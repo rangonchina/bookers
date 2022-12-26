@@ -1,0 +1,27 @@
+<%= flash[:notice] %>
+<h1>Editing Book</h1>
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>error prohibited this book from being saved:
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @book, url: update_book_path(@book.id), method: :patch do |f| %> 
+
+  <div>
+  Title<br>
+  <%= f.text_field :title %><br>
+  </div>
+  <div>
+  Body<br>
+  <%= f.text_area :body %>
+  </div>
+  <div><%= f.submit 'Update Book' %></div>
+  
+  <td><%= link_to 'Show',book_path %></td>
+  |
+  <td><%= link_to 'Back', books_path %></td>
+<% end %>
